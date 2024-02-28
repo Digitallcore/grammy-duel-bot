@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/node": "^20.11.21",
+    "@types/typescript": "^2.0.0",
+    "grammy": "^1.21.1"
+  }
+}
