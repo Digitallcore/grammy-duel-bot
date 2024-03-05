@@ -3,11 +3,13 @@
     "dev": "tsc && node ./build/bot.js"
   },
   "devDependencies": {
+    "dotenv": "^16.4.5",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@types/node": "^20.11.21",
     "@types/typescript": "^2.0.0",
+    "axios": "^1.6.7",
     "grammy": "^1.21.1"
   }
 }
