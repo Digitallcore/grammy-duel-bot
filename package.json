@@ -10,6 +10,7 @@
     "@types/node": "^20.11.21",
     "@types/typescript": "^2.0.0",
     "axios": "^1.6.7",
-    "grammy": "^1.21.1"
+    "grammy": "^1.21.1",
+    "vercel": "^33.5.3"
   }
 }

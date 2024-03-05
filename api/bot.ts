@@ -1,11 +1,9 @@
 import { Bot, Context, webhookCallback } from "grammy";
-import { deployWebhook } from "./deploy/webhook";
-
-void deployWebhook() // try to set webhook automatically
-
 const token = process.env.BOT_TOKEN;
 if (!token) throw new Error("BOT_TOKEN is unset");
 const bot = new Bot(token);
+let status = await bot.api.setWebhook(`${process.env.VERCEL_URL}/api/bot`)
+console.log(status ? 'Webhook set right!' : 'Error!')
 const array = ['руку', 'ногу', 'глаз', 'яйцо', 'палец']
 let sender_id: number = 0
 let senderUsername: string = ''
@@ -14,6 +12,7 @@ const findUsernameInMessage = (msg: string) => {
     const array = msg.split(' ')
     return array.find(nickname => nickname.startsWith('@'))!
 }
+
 bot.on("message", async (ctx: Context) => {
     // catch 'duel' message and it to object
     if (ctx.message?.text?.toLowerCase().includes('дуэль')) {

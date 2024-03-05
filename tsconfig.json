@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "commonjs",
+    "target": "ES2017",
+    "module": "esnext",
     "rootDir": "./api",
     "moduleResolution": "node",
     "resolveJsonModule": true,
