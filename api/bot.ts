@@ -1,7 +1,7 @@
 import { Bot, Context, webhookCallback } from "grammy";
 import { deployWebhook } from "./deploy/webhook";
 
-deployWebhook() // try to set webhook automatically
+void deployWebhook() // try to set webhook automatically
 
 const token = process.env.BOT_TOKEN;
 if (!token) throw new Error("BOT_TOKEN is unset");
