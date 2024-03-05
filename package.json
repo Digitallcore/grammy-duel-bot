@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "tsc && node ./build/bot.js"
+  },
   "devDependencies": {
     "typescript": "^5.3.3"
   },
