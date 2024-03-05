@@ -1,8 +1,10 @@
 import { Bot, Context, webhookCallback } from "grammy";
+import { finalPhrase } from "./helpers/phrases";
+
 const token = process.env.BOT_TOKEN;
 if (!token) throw new Error("BOT_TOKEN is unset");
 const bot = new Bot(token);
-const array = ['руку', 'ногу', 'глаз', 'яйцо', 'палец']
+
 let sender_id: number = 0
 let senderUsername: string = ''
 let botReplyMessageId: number = 0
@@ -37,7 +39,9 @@ bot.on("message", async (ctx: Context) => {
                 await ctx.reply(`Вы вызвали ${opponentName} на дуэль!`, {reply_to_message_id: ctx.message?.message_id})
                 const senderDamage = Math.floor(Math.random() * 100)
                 const replierDamage = Math.floor(Math.random() * 100)
-                await ctx.reply(`${senderDamage > replierDamage ? senderUsername : opponentName} отстреливает ${array[Math.floor(Math.random() * array.length)]} ${senderDamage > replierDamage ? opponentName : senderUsername} и выходит победителем из дуэли!`)
+                const winner = senderDamage > replierDamage ? senderUsername : opponentName
+                const loser = senderDamage > replierDamage ? opponentName : senderUsername
+                await ctx.reply(finalPhrase(winner,loser))
                 sender_id = 0
                 senderUsername = ''
                 botReplyMessageId = 0
