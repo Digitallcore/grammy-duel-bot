@@ -14,7 +14,7 @@ const findUsernameInMessage = (msg: string) => {
 }
 
 bot.on("message", async (ctx: Context) => {
-    // catch 'duel' message and it to object
+    // catch 'duel' message and set it to object
     if (ctx.message?.text?.toLowerCase().includes('дуэль')) {
         const reply = await ctx.reply('Кого вызываете на дуэль?', {reply_to_message_id: ctx.message?.message_id})
         botReplyMessageId = reply.message_id
