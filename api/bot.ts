@@ -2,10 +2,6 @@ import { Bot, Context, webhookCallback } from "grammy";
 const token = process.env.BOT_TOKEN;
 if (!token) throw new Error("BOT_TOKEN is unset");
 const bot = new Bot(token);
-bot.use(async () => {
-    await bot.api.setWebhook(`${process.env.VERCEL_URL}/api/bot`)
-})
-
 const array = ['руку', 'ногу', 'глаз', 'яйцо', 'палец']
 let sender_id: number = 0
 let senderUsername: string = ''
