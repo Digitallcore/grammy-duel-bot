@@ -15,5 +15,5 @@ const phrases: string[] = [
 
 export const finalPhrase = (winner: string, loser: string) => {
     const phrase = phrases[Math.floor(Math.random() * phrases.length)]
-    return phrase.replace('loser', loser).replace('winner', winner)
+    return phrase.replace('loser', loser).replaceAll('winner', winner)
 }
