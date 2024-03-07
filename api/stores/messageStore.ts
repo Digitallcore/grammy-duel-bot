@@ -19,5 +19,5 @@ const messageStore: msgStore = {
     bot_reply_message_id: 0
 }
 
-export {messageStore, resetMessageStore, setMessageStore}
+export { messageStore, resetMessageStore, setMessageStore }
 
