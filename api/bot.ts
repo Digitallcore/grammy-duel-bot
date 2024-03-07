@@ -1,10 +1,10 @@
 import { Bot, Context, webhookCallback } from "grammy";
 import { finalPhrase } from "./helpers/phrases";
+import { messageStore, setMessageStore, resetMessageStore } from './stores/messageStore'
 
 const token = process.env.BOT_TOKEN;
 if (!token) throw new Error("BOT_TOKEN is unset");
 const bot = new Bot(token);
-
 let sender_id: number = 0
 let senderUsername: string = ''
 let botReplyMessageId: number = 0
@@ -17,9 +17,7 @@ bot.on("message", async (ctx: Context) => {
     // catch 'duel' message and set it to object
     if (ctx.message?.text?.toLowerCase().includes('дуэль')) {
         const reply = await ctx.reply('Кого вызываете на дуэль?', {reply_to_message_id: ctx.message?.message_id})
-        botReplyMessageId = reply.message_id
-        sender_id = ctx.message.from.id
-        senderUsername = `@${ctx.message.from.username}`
+        setMessageStore(ctx.message.from.id, `@${ctx.message.from.username}`, reply.message_id)
     }
 
     //wait for reply to previous message
@@ -42,9 +40,7 @@ bot.on("message", async (ctx: Context) => {
                 const winner = senderDamage > replierDamage ? senderUsername : opponentName
                 const loser = senderDamage > replierDamage ? opponentName : senderUsername
                 await ctx.reply(finalPhrase(winner,loser))
-                sender_id = 0
-                senderUsername = ''
-                botReplyMessageId = 0
+                resetMessageStore()
             }
         }
     }
