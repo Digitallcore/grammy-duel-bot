@@ -1,10 +1,12 @@
 import { Bot, type Context, webhookCallback } from 'grammy'
 import { finalPhrase } from './helpers/phrases'
 import { messageStore, setMessageStore, resetMessageStore } from './stores/messageStore'
+import { production } from "./helpers/launch";
 
 const token = process.env.BOT_TOKEN
-if (!token) throw new Error('BOT_TOKEN is unset')
+if (!token) { throw new Error('BOT_TOKEN is unset') }
 const bot = new Bot(token)
+production(bot)
 const findUsernameInMessage = (msg: string): string => {
   const array = msg.split(' ')
   return array.find(nickname => nickname.startsWith('@')) ?? 'Тегните человека через @, чтобы вызвать его на дуэль'
